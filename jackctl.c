@@ -140,12 +140,6 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	if (jack_activate(client)) {
-		fprintf(stderr, "Erreur: impossible d'activer le client JACK\n");
-		jack_client_close(client);
-		return 1;
-	}
-	
 	/* Perform differents actions */
 	switch (action) {
 		case LIST_PORTS:
@@ -163,7 +157,6 @@ int main(int argc, char *argv[]) {
 			break;
 	}
 	/* Cleanup */
-	jack_deactivate(client);
 	jack_client_close(client);
 	return rc;
 }
