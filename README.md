@@ -8,7 +8,7 @@ Small command line interface to connect/disconnect clients to jack server. This 
     -C  list all connections
     -D  disconnect all connections
     -c  src dest       connect src to dest
-    -d  src dest       connect src from dest
+    -d  src dest       disconnect src from dest
 
 # Examples
 
