@@ -27,66 +27,9 @@
 
 jack_client_t *client;
 
-void list_ports(void) {
-	const char **ports;
-	const char **port;
-
-	/* Get AUDIO input ports */
-	ports = jack_get_ports(client, NULL, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput);
-	if (ports) {
-		for (port = ports; *port; port++) {
-			printf("playback: %s\n", *port);
-		}
-		free(ports); 
-	}
-
-	/* Get AUDIO output ports */
-	ports = jack_get_ports(client, NULL, JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput);
-	if (ports) {
-		for (port = ports; *port; port++) {
-			printf("capture: %s\n", *port);
-		}
-		free(ports); 
-	}
-
-	/* Get MIDI input ports */
-	ports = jack_get_ports(client, NULL, JACK_DEFAULT_MIDI_TYPE, JackPortIsInput);
-	if (ports) {
-		for (port = ports; *port; port++) {
-			printf("midi_in: %s\n", *port);
-		}
-		free(ports); 
-	}
-
-	/* Get MIDI output ports  */
-	ports = jack_get_ports(client, NULL, JACK_DEFAULT_MIDI_TYPE, JackPortIsOutput);
-	if (ports) {
-		for (port = ports; *port; port++) {
-			printf("midi_out: %s\n", *port);
-		}
-		free(ports); 
-	}
-}
-
-int connect_ports(const char *src, const char *dst) {
-	if (jack_connect(client, src, dst)) {
-		fprintf(stderr, "Error: cannot connect %s to %s\n", src, dst);
-		return -1;
-	}
-	return 0;
-}
-
-int disconnect_ports(const char *src, const char *dst) {
-	if (jack_disconnect(client, src, dst)) {
-		fprintf(stderr, "Error: cannot disconnect %s from %s\n", src, dst);
-		return -1;
-	}
-	return 0;
-}
-
 int usage(void){
 	// fprintf(stderr, "Usage: programme [-l] [-C] [-f config] [-c source destination] [-d source destination]\n");
-	fprintf(stderr, "Usage:\n  jackctl [-l] [-c source destination] [-d source destination]\n");
+	fprintf(stderr, "Usage:\n  jackctl [-l] [-C] [-D] [-c source destination] [-d source destination]\n");
     exit(1);
 }
 
@@ -94,20 +37,22 @@ int main(int argc, char *argv[]) {
 
 	int action = UNKNOWN;
 	int opt;
-
 	int rc=0;
 
 	//char config[256];
 
 	/* Checking command line options */
 	if (argc > 1) {
-		while ((opt = getopt (argc, argv, "c:d:f:lC")) != -1 ) {
+		while ((opt = getopt (argc, argv, "c:d:f:lCD")) != -1 ) {
 			switch (opt) {
 			case 'l': 
 				action = LIST_PORTS;
 				break;
 			case 'C':
 				action = LIST_CONNECTIONS;
+				break;
+			case 'D':
+				action = DISCONNECT_ALL;
 				break;
 			case 'f': 
 				action = RUN_CONFIG;
@@ -145,7 +90,11 @@ int main(int argc, char *argv[]) {
 		case LIST_PORTS:
 			list_ports();
 			break;
+		case DISCONNECT_ALL:
+			disconnect_all(client);
+			break;
 		case LIST_CONNECTIONS:
+			list_connections(client);
 			break;
 		case RUN_CONFIG:
 			break;
@@ -153,7 +102,7 @@ int main(int argc, char *argv[]) {
 			rc = connect_ports (argv[optind], argv[optind + 1]);
 			break;
 		case DISCONNECT:
-			rc = disconnect_ports (argv[optind], argv[optind + 1]);
+			rc = disconnect_ports (argv[optind], argv[optind + 1], 1);
 			break;
 	}
 	/* Cleanup */

@@ -16,6 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 */
+#ifndef __JACKCTL_H__
+
+void list_ports(void);
+int connect_ports(const char *, const char *);
+int disconnect_ports(const char *, const char *, int);
+void list_connections(jack_client_t *);
+void disconnect_all(jack_client_t *);
 
 #define	UNKNOWN          0
 #define	LIST_PORTS       1
@@ -23,3 +30,6 @@
 #define	RUN_CONFIG       3
 #define	CONNECT          4
 #define	DISCONNECT       5
+#define	DISCONNECT_ALL   6
+
+#endif /* __JACKCTL_H__ */
