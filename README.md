@@ -1,6 +1,6 @@
-# Jack2 simple CLI
+# Simple CLI for JACK audio server
 
-Small command line interface to connect/disconnect clients to jack server. This allows for scripting connections on kiosk-mode applications.
+Small command line interface to connect/disconnect clients to jack server. Useful for scripting connections on kiosk-mode applications.
 
 ## Options
 
@@ -15,7 +15,7 @@ Small command line interface to connect/disconnect clients to jack server. This 
 ## List available ports
 
     jackctl -l
-    layback: system:playback_1
+    playback: system:playback_1
     playback: system:playback_2
     capture: system:capture_1
     capture: system:capture_2
