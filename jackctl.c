@@ -28,7 +28,6 @@
 jack_client_t *client;
 
 int usage(void){
-	// fprintf(stderr, "Usage: programme [-l] [-C] [-f config] [-c source destination] [-d source destination]\n");
 	fprintf(stderr, "Usage:\n  jackctl [-l] [-C] [-D] [-c source destination] [-d source destination]\n");
     exit(1);
 }
@@ -81,7 +80,7 @@ int main(int argc, char *argv[]) {
 	/* Jack client initialization */
 	client = jack_client_open("jack_connect", JackNullOption, NULL);
 	if (client == NULL) {
-		fprintf(stderr, "Erreur: impossible de se connecter au serveur JACK\n");
+		fprintf(stderr, "Error: Unable to connect to JACK server\n");
 		return 1;
 	}
 
