@@ -29,7 +29,7 @@ jack_client_t *client;
 
 int usage(void){
 	fprintf(stderr, "Usage:\n  jackctl [-l] [-C] [-D] [-c source destination] [-d source destination]\n");
-    exit(1);
+	exit(1);
 }
 
 int main(int argc, char *argv[]) {
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	else {
+	if (optind < 2) {
 		usage();
 	}
 	if (action == CONNECT || action == DISCONNECT) {
