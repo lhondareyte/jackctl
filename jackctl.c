@@ -38,8 +38,6 @@ int main(int argc, char *argv[]) {
 	int opt;
 	int rc=0;
 
-	//char config[256];
-
 	/* Checking command line options */
 	if (argc > 1) {
 		while ((opt = getopt (argc, argv, "c:d:f:lCD")) != -1 ) {
@@ -59,7 +57,7 @@ int main(int argc, char *argv[]) {
 			case 'c':
 				action = CONNECT;
 				break;
-			case'd':
+			case 'd':
 				action = DISCONNECT;
 				break;
 			default:
