@@ -43,22 +43,22 @@ Edit a `ini` style configuration file as follow:
     ; file: /etc/jackctl.d/aeolus.conf
     ;
     [MIDIMAN MIDI_1]
-	    comment = First Keyboard from MIDIMAN MIDISPORT
+	    ; First Keyboard from MIDIMAN MIDISPORT
 	    source = midiman-umidi0.0:TX
 	    destination = aeolus:Midi/in
     
     [MIDIMAN MIDI_2]
-	     comment = Second Keyboard from MIDIMAN MIDISPORT
-	     source = midiman-umidi0.1:TX
-	     destination = aeolus:Midi/in
+	    ; Second Keyboard from MIDIMAN MIDISPORT
+	    source = midiman-umidi0.1:TX
+	    destination = aeolus:Midi/in
     
     [aeolus AUDIO_L]
-    	comment = Left AUDIO output
+            ; Left AUDIO output
 	    source = aeolus:out.L
 	    destination = system:playback_1
 
     [aeolus AUDIO_R]
-	    comment = Right AUDIO output
+	    ; Right AUDIO output
 	    source = aeolus:out.R
 	    destination = system:playback_2
      
