@@ -150,3 +150,83 @@ void disconnect_all(void) {
 
 }
 
+void run_config(char * filename) {
+
+    char *source = NULL;
+    char *destination = NULL;
+    char *action = NULL;
+    char line[MAX_LINE];
+    Config config = { .count = 0 };
+    FILE *fp;
+
+    fp = fopen(filename, "r");
+    if (!fp) {
+        fprintf(stderr, "Error: cannot open %s!\n", filename);
+        exit(1);
+    }
+
+    // Chargement du fichier
+    while (fgets(line, MAX_LINE, fp) && config.count < MAX_CONFIG) {
+        trim(line);
+        if (strlen(line) > 0) {
+            config.lines[config.count] = strdup(line);
+            config.count++;
+        }
+    }
+    fclose(fp);
+
+    for (int i = 0; i < config.count; i++) {
+        char *current_line = config.lines[i];
+
+        /* Ignore empty lines or comments*/
+        if (current_line[0] == '*' || current_line[0] == '#' || current_line[0] == ';') {
+            continue;
+        }
+
+        /*  Sections */
+        if (current_line[0] == '[' && current_line[strlen(current_line) - 1] == ']' && strlen(current_line) > 2) {
+            free(action); action = NULL;
+            free(source); source = NULL;
+            free(destination); destination = NULL;
+            continue;
+        }
+
+        /* Get pairs key/value */
+        char *equal_sign = strchr(current_line, '=');
+        if (equal_sign) {
+            *equal_sign = '\0';
+            char *key = current_line;
+            char *value = equal_sign + 1;
+            trim(key);
+            trim(value);
+
+            if (strcmp(key, "action") == 0) {
+                action = strdup(value);
+            }
+            else if (strcmp(key, "source") == 0) {
+                source = strdup(value);
+            }
+            else if (strcmp(key, "destination") == 0) {
+                destination = strdup(value);
+            }
+        }
+
+        if (action && source && destination) {
+			if ((strcmp(action, "connect")) == 0) {
+				connect_ports(source, destination);
+			}
+			else if ((strcmp(action, "disconnect")) == 0) {
+				disconnect_ports(source, destination, 1);
+			}
+        }
+    }
+
+    /* Cleanup */
+    for (int i = 0; i < config.count; i++) {
+        free(config.lines[i]);
+    }
+    free(action);
+    free(source);
+    free(destination);
+
+}

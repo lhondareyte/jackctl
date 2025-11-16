@@ -88,12 +88,14 @@ int main(int argc, char *argv[]) {
 			list_ports();
 			break;
 		case DISCONNECT_ALL:
-			disconnect_all(client);
+			disconnect_all();
 			break;
 		case LIST_CONNECTIONS:
-			list_connections(client);
+			list_connections();
 			break;
 		case RUN_CONFIG:
+			disconnect_all();
+			run_config(argv[optind - 1]);
 			break;
 		case CONNECT:
 			rc = connect_ports (argv[optind], argv[optind + 1]);
