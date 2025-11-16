@@ -127,13 +127,14 @@ int disconnect_ports(const char *src, const char *dst, int verbose) {
 	return 0;
 }
 
-void disconnect_all(void) {
+int disconnect_all(void) {
 	const char **ports, **connections;
     int i, j;
+    int rc = 0;
 
     ports = jack_get_ports(client, NULL, NULL, 0);
     if (ports == NULL) {
-        return;
+        return rc;
     }
 
     /* Get connexions for each port */
@@ -141,16 +142,17 @@ void disconnect_all(void) {
         connections = jack_port_get_all_connections(client, jack_port_by_name(client, ports[i]));
         if (connections != NULL) {
             for (j = 0; connections[j] != NULL; j++) {
-				disconnect_ports(ports[i], connections[j], 0);
+				rc += disconnect_ports(ports[i], connections[j], 0);
             }
             jack_free(connections);
         } 
     }
     jack_free(ports);
+    return rc;
 
 }
 
-void run_config(char * filename) {
+int run_config(char * filename) {
 
     char *source = NULL;
     char *destination = NULL;
@@ -158,6 +160,7 @@ void run_config(char * filename) {
     char line[MAX_LINE];
     Config config = { .count = 0 };
     FILE *fp;
+    int rc = 0;
 
     fp = fopen(filename, "r");
     if (!fp) {
@@ -213,10 +216,10 @@ void run_config(char * filename) {
 
         if (action && source && destination) {
 			if ((strcmp(action, "connect")) == 0) {
-				connect_ports(source, destination);
+				rc += connect_ports(source, destination);
 			}
 			else if ((strcmp(action, "disconnect")) == 0) {
-				disconnect_ports(source, destination, 1);
+				rc += disconnect_ports(source, destination, 1);
 			}
         }
     }
@@ -228,5 +231,5 @@ void run_config(char * filename) {
     free(action);
     free(source);
     free(destination);
-
+    return rc;
 }

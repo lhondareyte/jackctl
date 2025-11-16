@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
 	int action = UNKNOWN;
 	int opt;
-	int rc=0;
+	int rc = 0;
 
 	/* Checking command line options */
 	if (argc > 1) {
@@ -88,13 +88,13 @@ int main(int argc, char *argv[]) {
 			list_ports();
 			break;
 		case DISCONNECT_ALL:
-			disconnect_all();
+			rc = disconnect_all();
 			break;
 		case LIST_CONNECTIONS:
 			list_connections();
 			break;
 		case RUN_CONFIG:
-			disconnect_all();
+			rc = disconnect_all();
 			run_config(argv[optind - 1]);
 			break;
 		case CONNECT:
@@ -106,5 +106,6 @@ int main(int argc, char *argv[]) {
 	}
 	/* Cleanup */
 	jack_client_close(client);
+	if ( rc > 0) rc = 1;
 	return rc;
 }

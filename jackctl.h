@@ -22,8 +22,8 @@ void list_ports(void);
 int connect_ports(const char *, const char *);
 int disconnect_ports(const char *, const char *, int);
 void list_connections(void);
-void disconnect_all(void);
-void run_config(char *);
+int disconnect_all(void);
+int run_config(char *);
 
 #define	UNKNOWN          0
 #define	LIST_PORTS       1
