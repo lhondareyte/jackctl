@@ -21,8 +21,8 @@
 void list_ports(void);
 int connect_ports(const char *, const char *);
 int disconnect_ports(const char *, const char *, int);
-void list_connections(jack_client_t *);
-void disconnect_all(jack_client_t *);
+void list_connections(void);
+void disconnect_all(void);
 
 #define	UNKNOWN          0
 #define	LIST_PORTS       1

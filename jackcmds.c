@@ -17,13 +17,34 @@
 
 */
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <jack/jack.h>
 
+#define MAX_LINE 256
+#define MAX_CONFIG 1000
+
 extern jack_client_t *client;
+
+typedef struct {
+    char *lines[MAX_CONFIG];
+    int count;
+} Config;
+
+void trim(char *str) {
+    char *p = str;
+    while(isspace(*p)) {
+        p++;
+    }
+    memmove(str, p, strlen(p) + 1);
+    p = str + strlen(str) - 1;
+    while(p > str && isspace(*p)) {
+        *p-- = '\0';
+    }
+}
 
 void list_ports(void) {
 	const char **ports;
@@ -66,7 +87,7 @@ void list_ports(void) {
 	}
 }
 
-void list_connections(jack_client_t *client) {
+void list_connections(void) {
     const char **ports, **connections;
     int i, j;
 
@@ -106,7 +127,7 @@ int disconnect_ports(const char *src, const char *dst, int verbose) {
 	return 0;
 }
 
-void disconnect_all(jack_client_t *client) {
+void disconnect_all(void) {
 	const char **ports, **connections;
     int i, j;
 
@@ -128,3 +149,4 @@ void disconnect_all(jack_client_t *client) {
     jack_free(ports);
 
 }
+
