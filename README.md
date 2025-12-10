@@ -1,6 +1,6 @@
 # Simple CLI for JACK audio server
 
-Command line interface to connect/disconnect JACK clients. Useful for scripting connections on kiosk-mode applications.
+Command line interface to connect/disconnect JACK client ports. Useful for scripting connections on kiosk-mode applications.
 
 ## Options
 
@@ -43,24 +43,24 @@ Edit a `ini` style configuration file as follow:
     ; file: /etc/jackctl.d/aeolus.conf
     ;
     [MIDIMAN MIDI_1]
-	    ; First Keyboard from MIDIMAN MIDISPORT
-	    source = midiman-umidi0.0:TX
-	    destination = aeolus:Midi/in
+        ; First Keyboard from MIDIMAN MIDISPORT
+        source = midiman-umidi0.0:TX
+        destination = aeolus:Midi/in
     
     [MIDIMAN MIDI_2]
-	    ; Second Keyboard from MIDIMAN MIDISPORT
-	    source = midiman-umidi0.1:TX
-	    destination = aeolus:Midi/in
+        ; Second Keyboard from MIDIMAN MIDISPORT
+        source = midiman-umidi0.1:TX
+        destination = aeolus:Midi/in
     
     [aeolus AUDIO_L]
-            ; Left AUDIO output
-	    source = aeolus:out.L
-	    destination = system:playback_1
+        ; Left AUDIO output
+        source = aeolus:out.L
+        destination = system:playback_1
 
     [aeolus AUDIO_R]
-	    ; Right AUDIO output
-	    source = aeolus:out.R
-	    destination = system:playback_2
+        ; Right AUDIO output
+        source = aeolus:out.R
+        destination = system:playback_2
      
 There is one section per connection. All previous settings will be disconnected before applying configuration.
 
@@ -71,4 +71,4 @@ jackctl -f /etc/jackctl.d/aeolus.ini
 
 # License
 
-GPLV2 or later 
+GPLV2 or later (same as JACK audio server)
