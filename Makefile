@@ -3,7 +3,7 @@ SRCS    = jackctl.c jackcmds.c
 OBJS    = jackctl.o jackcmds.o 
 
 CFLAGS  = -I/usr/include -I/usr/local/include -Werror -pedantic
-LDFLAGS = -L/usr/local/lib -L/usr/lib -ljack
+LDFLAGS = -L/usr/local/lib -L/usr/lib -ljack -s
 BINDIR  = $(DESTDIR)$(PREFIX)/bin
 MANDIR  = $(DESTDIR)$(PREFIX)/share/man/man1
 
