@@ -11,6 +11,8 @@ all: $(OBJS)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
+man:
+	go-md2man < $(PRG).md > $(PRG).1
 clean:
-	rm -f $(OBJS) $(PRG)
+	rm -f $(OBJS) $(PRG) *.1
 
