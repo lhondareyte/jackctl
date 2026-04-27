@@ -1,0 +1,55 @@
+.nh
+.TH JACKCTL 1
+.SH SYNOPSIS
+\fBjackclt\fR [\fB-c|-d src dst\fR] [\fB-f file\fR] [\fB-l\fR] [\fB-C\fR] [\fB-D\fR]
+
+.SH DESCRIPTION
+\fBjackctl\fR is a command line interface to manage ports connections on JACK audio server. It can be used to connect JACK ports in bacth mode.
+
+.SH OPTIONS
+\fB-l\fR
+  list available ports
+
+.PP
+\fB-c source destination\fR
+  connect source to destination
+
+.PP
+\fB-d source destination\fR
+  disconnect source from destination
+
+.PP
+\fB-f file\fR
+  connect ports from configuration file
+
+.PP
+\fB-C\fR
+  list all connections
+
+.PP
+\fB-D\fR
+  verbose mode
+
+.PP
+\fB-v\fR
+  Disconnect all ports
+
+.SH CONFIGURATION FILE
+The configuration file is in \fBini\fR style file format. Each section corresponds to a connection between two ports. The section name is ignored. Each section must include a source and a destination.
+
+.EX
+ ; file: /etc/jackctl.d/aeolus.conf
+ ;
+ [MIDIMAN MIDI_1]
+   ; First Keyboard from MIDIMAN MIDISPORT
+   source = midiman-umidi0.0:TX
+   destination = aeolus:Midi/in
+    
+ [MIDIMAN MIDI_2]
+   ; Second Keyboard from MIDIMAN MIDISPORT
+   source = midiman-umidi0.1:TX
+   destination = aeolus:Midi/in
+.EE
+
+.SH AUTHOR
+\fBjackctl\fR was written by Luc Hondareyte - https://github.com/lhondareyte

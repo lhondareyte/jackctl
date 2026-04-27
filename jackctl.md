@@ -26,6 +26,9 @@
   list all connections
 
 `-D`
+  verbose mode
+
+`-v`
   Disconnect all ports
 
 ## CONFIGURATION FILE
