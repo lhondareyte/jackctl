@@ -18,6 +18,7 @@
 */
 
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +28,12 @@
 #define MAX_LINE 256
 #define MAX_CONFIG 1000
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
 extern jack_client_t *client;
+extern bool verbose;
 
 typedef struct {
 	char *lines[MAX_CONFIG];
@@ -144,7 +150,7 @@ int disconnect_all(void) {
 		connections = jack_port_get_all_connections(client, jack_port_by_name(client, ports[i]));
 		if (connections != NULL) {
 			for (j = 0; connections[j] != NULL; j++) {
-				rc += disconnect_ports(ports[i], connections[j], 0);
+				rc += disconnect_ports(ports[i], connections[j]);
 			}
 			jack_free(connections);
 		} 
@@ -220,7 +226,7 @@ int run_config(char * filename) {
 				rc += connect_ports(source, destination);
 			}
 			else if ((strcmp(action, "disconnect")) == 0) {
-				rc += disconnect_ports(source, destination, 1);
+				rc += disconnect_ports(source, destination);
 			}
 		}
 	}

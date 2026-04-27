@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
 	/* Checking command line options */
 	if (argc > 1) {
-		while ((opt = getopt (argc, argv, "c:d:f:lCD")) != -1 ) {
+		while ((opt = getopt (argc, argv, "c:d:f:lCDv")) != -1 ) {
 			switch (opt) {
 			case 'l': 
 				action = LIST_PORTS;
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	if (optind < 2) {
+	if ((optind < 2) || (action == UNKNOWN)) {
 		usage();
 	}
 	if (action == CONNECT || action == DISCONNECT) {
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
 		rc = connect_ports (argv[optind], argv[optind + 1]);
 		break;
 	case DISCONNECT:
-		rc = disconnect_ports (argv[optind], argv[optind + 1], 1);
+		rc = disconnect_ports (argv[optind], argv[optind + 1]);
 		break;
 	}
 	/* Cleanup */

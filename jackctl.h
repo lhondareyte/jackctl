@@ -21,7 +21,7 @@
 #include <stdbool.h>
 
 int connect_ports(const char *, const char *);
-int disconnect_ports(const char *, const char *, int);
+int disconnect_ports(const char *, const char *);
 int disconnect_all(void);
 int run_config(char *);
 void list_ports(void);
