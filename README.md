@@ -1,6 +1,6 @@
 # Simple CLI for JACK audio server
 
-Command line interface to connect/disconnect JACK client ports. Useful for scripting connections on kiosk-mode applications.
+Command line interface to list/connect/disconnect JACK clients ports. Useful for scripting connections on kiosk-mode applications.
 
 ## Options
 
