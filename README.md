@@ -71,4 +71,4 @@ jackctl -f /etc/jackctl.d/aeolus.ini
 
 # License
 
-GPLV2 or later (same as JACK audio server)
+GPLV2 or later (or same as JACK audio server)
