@@ -1,11 +1,12 @@
 /*
- * Copyright (C) 2025 Luc Hondareyte
+ * Copyright (C) 2025-2026 Luc Hondareyte
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
  */
 
 #ifndef __JACKCTL_H__
+#define __JACKCTL_H__
 
 #include <stdbool.h>
 
