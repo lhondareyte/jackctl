@@ -250,11 +250,11 @@ int run_config(char * filename) {
 		}
 	}
 
+cleanup_config:
 	/* Cleanup */
 	for (int i = 0; i < config.count; i++) {
 		free(config.lines[i]);
 	}
-cleanup_config:
 	free(section);
 	free(action);
 	free(source);
