@@ -110,10 +110,14 @@ int parse_config (char * filename) {
 				trim(value);
 
 				if (strcmp(key, "source") == 0) {
-					config.source[config.s_count - 1 ] = strdup(value);
+					if (strlen(value) > 0) {
+						config.source[config.s_count - 1 ] = strdup(value);
+					}
 				}
 				else if (strcmp(key, "destination") == 0) {
-					config.destination[config.s_count - 1] = strdup(value);
+					if (strlen(value) > 0) {
+						config.destination[config.s_count - 1] = strdup(value);
+					}
 				}
 				else {
 					fprintf(stderr, "Error: %s[%d]: Unknown action \"%s\"\n", filename, config.l_count, key);
