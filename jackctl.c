@@ -16,7 +16,7 @@
 jack_client_t *client;
 
 int usage(void){
-	fprintf(stderr, "Usage:\n  jackctl [-l] [-C] [-D] [-c src dst] [-d src dst] [-v]\n");
+	fprintf(stderr, "Usage:\n  jackctl [-l] | [-C] | [-D] | -f <config.ini> | [-c src dst] [-d src dst] | [-v]\n");
 	exit(EXIT_FAILURE);
 }
 
