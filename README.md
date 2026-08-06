@@ -1,6 +1,7 @@
 # Simple CLI for JACK audio server
 
-Command line interface to list/connect/disconnect JACK clients ports. Useful for scripting connections on kiosk-mode applications.
+Command line interface to list/connect/disconnect JACK clients ports. Useful 
+for scripting connections in kiosk-mode applications.
 
 ## Options
 
@@ -31,8 +32,8 @@ midi_out: foo-umidi0.0:midi.TX
 ## Connect audio and midi ports 
 
 ```sh
-jacktl -c system:playback_1 aeolus:out.L
-jacktl -c system:playback_2 aeolus:out.R
+jacktl -c aeolus:out.L system:playback_1
+jacktl -c aeolus:out.R system:playback_2
 jacktl -c foo:umidi0.0:TX aeolus:Midi/in
 ```
 
