@@ -7,7 +7,9 @@ LDFLAGS = -L/usr/local/lib -L/usr/lib -ljack -s
 BINDIR  = $(DESTDIR)$(PREFIX)/bin
 MANDIR  = $(DESTDIR)$(PREFIX)/share/man/man1
 
-all: $(OBJS)
+all: $(PRG)
+
+$(PRG): $(OBJS)
 	$(CC) $(OBJS) -o $(PRG) $(LDFLAGS)
 
 .c.o:
@@ -20,6 +22,9 @@ install:
 
 man:
 	go-md2man < $(PRG).md > $(PRG).1
+
+test: $(PRG)
+	cd tests && ./run-tests.sh
 
 clean:
 	rm -f $(OBJS) $(PRG)
