@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 Luc Hondareyte
+ * Copyright (C) 2025-2026 Luc Hondareyte
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
@@ -85,8 +85,7 @@ int main(int argc, char *argv[]) {
 		list_connections();
 		break;
 	case RUN_CONFIG:
-		rc = disconnect_all();
-		run_config(argv[optind - 1]);
+		rc = run_config(argv[optind - 1]);
 		break;
 	case CONNECT:
 		rc = connect_ports (argv[optind], argv[optind + 1]);
@@ -97,6 +96,5 @@ int main(int argc, char *argv[]) {
 	}
 	/* Cleanup */
 	jack_client_close(client);
-	if ( rc > 0) rc = EXIT_FAILURE;
 	return rc;
 }

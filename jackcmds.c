@@ -109,9 +109,9 @@ int connect_ports(const char *src, const char *dst) {
 		if (verbose == TRUE) {
 			fprintf(stderr, "Error: cannot connect %s to %s\n", src, dst);
 		}
-		return -1;
+		return EXIT_FAILURE;
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 int disconnect_ports(const char *src, const char *dst) {
@@ -119,19 +119,19 @@ int disconnect_ports(const char *src, const char *dst) {
 		if (verbose == TRUE) {
 			fprintf(stderr, "Error: cannot disconnect %s from %s\n", src, dst);
 		}
-		return -1;
+		return EXIT_FAILURE;
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 int disconnect_all(void) {
 	const char **ports, **connections;
 	int i, j;
-	int rc = 0;
+	int rc = EXIT_SUCCESS;
 
 	ports = jack_get_ports(client, NULL, NULL, 0);
 	if (ports == NULL) {
-		return 0;
+		return EXIT_SUCCESS;
 	}
 
 	/* Get connexions for each port */
@@ -145,6 +145,8 @@ int disconnect_all(void) {
 		} 
 	}
 	jack_free(ports);
+	if (rc != 0)
+		rc = EXIT_FAILURE;
 	return rc;
 }
 
@@ -160,14 +162,16 @@ int run_config(char * filename) {
 	FILE *fp;
 
 	int len = 0; /* line length */
-	int rc = 0;
+	int rc = EXIT_SUCCESS;
 	int i = 0;
 
 	fp = fopen(filename, "r");
 	if (!fp) {
 		fprintf(stderr, "Error: cannot open %s!\n", filename);
-		exit(1);
+		return EXIT_FAILURE;
 	}
+
+	disconnect_all();
 
 	/* Load config file */
 	while (fgets(line, MAX_LINE, fp) && config.count < MAX_CONFIG) {
@@ -255,6 +259,8 @@ cleanup_config:
 	free(action);
 	free(source);
 	free(destination);
+	if (rc != 0)
+		rc = EXIT_FAILURE;
 	return rc;
 }
 
