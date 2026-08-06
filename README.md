@@ -4,11 +4,12 @@ Command line interface to list/connect/disconnect JACK clients ports. Useful for
 
 ## Options
 
-    -l  list all ports
-    -C  list all connections
-    -D  disconnect all connections
-    -c  src dest       connect src to dest
-    -d  src dest       disconnect src from dest
+    -l                  list all ports
+    -C                  list all connections
+    -D                  disconnect all connections
+    -c  src dest        connect src to dest
+    -d  src dest        disconnect src from dest
+    -f  <config.ini>    connect/disconnect from configuration file
 
 # Examples
 
