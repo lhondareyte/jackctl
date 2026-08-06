@@ -24,7 +24,7 @@ man:
 	go-md2man < $(PRG).md > $(PRG).1
 
 test: $(PRG)
-	cd tests && ./run-tests.sh
+	cd tests && ./regression.pl
 
 clean:
 	rm -f $(OBJS) $(PRG)
