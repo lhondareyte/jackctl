@@ -13,9 +13,11 @@
 int connect_ports(const char *, const char *);
 int disconnect_ports(const char *, const char *);
 int disconnect_all(void);
-int run_config(char *);
-void list_ports(void);
+int parse_config(char *);
+int run_config(void);
+
 void list_connections(void);
+void list_ports(void);
 
 #define	UNKNOWN          0
 #define	LIST_PORTS       1

@@ -1,6 +1,6 @@
 PRG     = jackctl
-SRCS    = jackctl.c jackcmds.c
-OBJS    = jackctl.o jackcmds.o 
+SRCS    = jackctl.c jackcmds.c runconfig.c
+OBJS    = jackctl.o jackcmds.o runconfig.o
 
 CFLAGS  = -I/usr/include -I/usr/local/include -Werror -pedantic
 LDFLAGS = -L/usr/local/lib -L/usr/lib -ljack -s

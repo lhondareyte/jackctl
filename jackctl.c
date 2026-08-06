@@ -85,7 +85,8 @@ int main(int argc, char *argv[]) {
 		list_connections();
 		break;
 	case RUN_CONFIG:
-		rc = run_config(argv[optind - 1]);
+		parse_config(argv[optind - 1]);
+		rc = run_config();
 		break;
 	case CONNECT:
 		rc = connect_ports (argv[optind], argv[optind + 1]);
