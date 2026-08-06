@@ -194,22 +194,21 @@ int run_config(char * filename) {
 		}
 
 		/*  Sections */
-		if (current_line[0] == '[' && current_line[strlen(current_line) - 1] == ']') {
+		len = strlen(current_line);
+		if (current_line[0] == '[' && current_line[len - 1] == ']') {
 			if (strlen(current_line) > 2) {
 				free(action); action = NULL;
 				free(source); source = NULL;
 				free(destination); destination = NULL;
-				len = strlen(current_line);
 				section = strdup(current_line);
 				for (int j = 0; j < len -2; j++ ) {
 					section[j] = section[j + 1];
 				}
 				section[len - 2] = '\0';
-				
 				continue;
 			}
 			else {
-				fprintf(stderr, "Error: %s[%d]: Invalid section name\n", filename, config.lines_number[i]);
+				fprintf(stderr, "Error:   %s[%d]: Invalid section name\n", filename, config.lines_number[i]);
 				rc = EXIT_FAILURE;
 				goto cleanup_config;
 			}
@@ -234,7 +233,7 @@ int run_config(char * filename) {
 				destination = strdup(value);
 			}
 			else {
-				fprintf(stderr, "Error: %s[%d]: Unknown action \"%s\"\n", filename, config.lines_number[i], key);
+				fprintf(stderr, "Error:   %s[%d]: Unknown action \"%s\"\n", filename, config.lines_number[i], key);
 				rc = EXIT_FAILURE;
 				goto cleanup_config;
 			}
