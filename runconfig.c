@@ -95,7 +95,7 @@ int parse_config (char * filename) {
 					continue;
 				}
 				else {
-					fprintf(stderr, "Error:   %s[%d]: Invalid section name\n", filename, config.l_count);
+					fprintf(stderr, "Error: %s[%d]: Invalid section name\n", filename, config.l_count);
 					rc = EXIT_FAILURE;
 					goto exit_parse;
 				}
@@ -116,7 +116,7 @@ int parse_config (char * filename) {
 					config.destination[config.s_count - 1] = strdup(value);
 				}
 				else {
-					fprintf(stderr, "Error:   %s[%d]: Unknown action \"%s\"\n", filename, config.l_count, key);
+					fprintf(stderr, "Error: %s[%d]: Unknown action \"%s\"\n", filename, config.l_count, key);
 					rc = EXIT_FAILURE;
 					goto exit_parse;
 				}
@@ -139,13 +139,16 @@ int run_config(void) {
 					rc += connect_ports(config.source[i], config.destination[i]);
 		}
 		else if( ! config.source[i]  && verbose == TRUE ) {
-			fprintf(stderr, "Warning : Missing source in \"%s\" section\n", config.section[i]);
+			fprintf(stderr, "Error: Missing source in \"%s\" section\n", config.section[i]);
+			rc = EXIT_FAILURE;
 		}
 		else if( ! config.destination[i] && verbose == TRUE ) {
-			fprintf(stderr, "Warning : Missing destination in \"%s\" section\n", config.section[i]);
+			fprintf(stderr, "Error: Missing destination in \"%s\" section\n", config.section[i]);
+			rc = EXIT_FAILURE;
 		}
 	}
 	if (rc > 0)
 		rc = EXIT_FAILURE;
 	return rc;
 }
+

@@ -3,10 +3,10 @@ use strict;
 use warnings;
 
 my %messages = (
-	"test_1.ini" => 'Warning : Missing source in "Missing source keyword" section',
-	"test_2.ini" => 'Warning : Missing destination in "Missing destination keyword" section',
-	"test_3.ini" => "Error:   test_3.ini[4]: Unknown action \"src\"\nWarning : Missing source in \"Wrong keyword\" section",
-	"test_4.ini" => 'Error:   test_4.ini[4]: Invalid section name',
+	"test_1.ini" => 'Error: Missing source in "Missing source keyword" section',
+	"test_2.ini" => 'Error: Missing destination in "Missing destination keyword" section',
+	"test_3.ini" => "Error: test_3.ini[4]: Unknown action \"src\"\nError: Missing source in \"Wrong keyword\" section",
+	"test_4.ini" => 'Error: test_4.ini[4]: Invalid section name',
 	"test_5.ini" => 'Error: cannot connect foo to bar'
 );
 
