@@ -17,7 +17,7 @@ jack_client_t *client;
 
 int usage(void){
 	fprintf(stderr, "Usage:\n  jackctl [-l] [-C] [-D] [-c src dst] [-d src dst] [-v]\n");
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 int main(int argc, char *argv[]) {
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	client = jack_client_open("jack_connect", JackNullOption, NULL);
 	if (client == NULL) {
 		fprintf(stderr, "Error: Unable to connect to JACK server\n");
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	/* Perform differents actions */
@@ -97,6 +97,6 @@ int main(int argc, char *argv[]) {
 	}
 	/* Cleanup */
 	jack_client_close(client);
-	if ( rc > 0) rc = 1;
+	if ( rc > 0) rc = EXIT_FAILURE;
 	return rc;
 }
