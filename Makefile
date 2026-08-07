@@ -24,6 +24,9 @@ man:
 	go-md2man < $(PRG).md > $(PRG).1
 
 test: $(PRG)
+	./jackctl -D
+	./jackctl -f tests/test_8.ini
+	./jackctl -C
 	cd tests && ./regression.pl
 
 clean:
