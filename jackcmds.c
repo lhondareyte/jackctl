@@ -64,7 +64,7 @@ void list_connections(void) {
 	const char **ports, **connections;
 	int i, j;
 
-	ports = jack_get_ports(client, NULL, NULL, 0);
+	ports = jack_get_ports(client, NULL, NULL, JackPortIsOutput);
 	if (ports == NULL) {
 		return;
 	}
