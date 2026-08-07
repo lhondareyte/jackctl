@@ -1,4 +1,9 @@
 #!/usr/bin/env perl
+#
+#  Copyright (c) 2026 Luc Hondareyte
+#
+#  SPDX-License-Identifier: MIT 
+#
 use strict;
 use warnings;
 
