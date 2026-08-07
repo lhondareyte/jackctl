@@ -12,21 +12,14 @@ my %messages = (
 	"test_7.ini" => 'Error: Missing destination in "Missing destination" section'
 );
 
-my @confiles = (
-	"test_1.ini", "test_2.ini", "test_3.ini", 
-	"test_4.ini", "test_5.ini", "test_6.ini" 
-);
-
-foreach my $file (@confiles) {
-	if ( -f $file ) {
-		my $msg = `../jackctl -v -f $file 2>&1`;
-		if ( not defined $messages{$file} ) {
-			next;
-		}
-		chomp $msg;
-		if ( $msg ne $messages{$file} ) {
-			die "Regression with $file configuration file\n";
-		}
+foreach my $file (glob("*.ini")) {
+	if ( not defined $messages{$file} ) {
+		next;
+	}
+	my $msg = `../jackctl -v -f $file 2>&1`;
+	chomp $msg;
+	if ( $msg ne $messages{$file} ) {
+		die "Regression with $file configuration file\n";
 	}
 }
 print STDOUT "All tests passed.\n"
