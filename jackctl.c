@@ -18,12 +18,12 @@ jack_client_t *client;
 int usage(void){
 	fprintf(stderr,
 		"Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>]\n"
-		"  -l              list peripherals\n"
+		"  -l              list ports\n"
 		"  -C              list all connections\n"
-		"  -D              disconnect all peripherals\n"
+		"  -D              disconnect all\n"
 		"  -c <src> <dst>  connect src to dst\n"
-		"  -d <src> <dst>  disconnect src to dst\n"
-		"  -f <file>       connect all peripherals from <file>\n"
+		"  -d <src> <dst>  disconnect src from dst\n"
+		"  -f <file>       connect ports from <file>\n"
 		"  -h              print this message\n"
 		);
 	exit(EXIT_FAILURE);

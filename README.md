@@ -7,12 +7,12 @@ for scripting connections in kiosk-mode applications.
 
 ```sh
 Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>]
-  -l              list peripherals
+  -l              list all ports
   -C              list all connections
-  -D              disconnect all peripherals
+  -D              disconnect all 
   -c <src> <dst>  connect src to dst
-  -d <src> <dst>  disconnect src to dst
-  -f <file>       connect all peripherals from <file>
+  -d <src> <dst>  disconnect src from dst
+  -f <file>       connect ports from <file>
   -h              print this message
 ```
 
