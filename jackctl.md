@@ -6,7 +6,7 @@
 
 ## DESCRIPTION 
 
-`jackctl` is a command line interface to manage ports connections on JACK audio server. It can be used to connect JACK ports in bacth mode.
+`jackctl` is a command line interface to manage ports connections on JACK audio server. It can be used to connect JACK ports in batch mode.
 
 ## OPTIONS
 
@@ -26,13 +26,14 @@
   list all connections
 
 `-D`
-  verbose mode
+  disconnect all ports
 
 `-v`
-  Disconnect all ports
+  verbose mode
 
 ## CONFIGURATION FILE
-The configuration file is in `ini` style file format. Each section corresponds to a connection between two ports. The section name is ignored. Each section must include a source and a destination.
+
+The configuration file use `ini` style file format. Each section corresponds to a connection between two ports. Each section must include a source and a destination.
 
 ```` 
  ; file: /etc/jackctl.d/aeolus.conf

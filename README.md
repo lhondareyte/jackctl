@@ -1,16 +1,21 @@
 # Simple CLI for JACK audio server
 
-Command line interface to list/connect/disconnect JACK clients ports. Useful 
+Command line interface to list, connect and disconnect JACK clients ports. Useful 
 for scripting connections in kiosk-mode applications.
 
 ## Options
 
-    -l                  list all ports
-    -C                  list all connections
-    -D                  disconnect all connections
-    -c  src dest        connect src to dest
-    -d  src dest        disconnect src from dest
-    -f  <config.ini>    connect/disconnect from configuration file
+```sh
+Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>] [-v]
+  -l              list peripherals
+  -C              list all connections
+  -D              disconnect all peripherals
+  -c <src> <dst>  connect src to dst
+  -d <src> <dst>  disconnect src to dst
+  -f <file>       connect all peripherals from <file>
+  -h              print this message
+  -v              verbose mode
+```
 
 # Examples
 
