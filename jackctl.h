@@ -34,6 +34,5 @@ void list_ports(void);
 #define FALSE 0
 #endif
 
-bool verbose = FALSE;
-
 #endif /* __JACKCTL_H__ */
+

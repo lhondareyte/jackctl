@@ -16,7 +16,7 @@ foreach my $file (glob("*.ini")) {
 	if ( not defined $messages{$file} ) {
 		next;
 	}
-	my $msg = `../jackctl -v -f $file 2>&1`;
+	my $msg = `../jackctl -f $file 2>&1`;
 	chomp $msg;
 	if ( $msg ne $messages{$file} ) {
 		die "Regression with $file configuration file\n";

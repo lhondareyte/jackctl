@@ -18,7 +18,6 @@
 #endif
 
 extern jack_client_t *client;
-extern bool verbose;
 
 void list_ports(void) {
 	const char **ports;
@@ -85,9 +84,7 @@ void list_connections(void) {
 
 int connect_ports(const char *src, const char *dst) {
 	if (jack_connect(client, src, dst)) {
-		if (verbose == TRUE) {
-			fprintf(stderr, "Error: cannot connect %s to %s\n", src, dst);
-		}
+		fprintf(stderr, "Error: cannot connect %s to %s\n", src, dst);
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
@@ -95,9 +92,7 @@ int connect_ports(const char *src, const char *dst) {
 
 int disconnect_ports(const char *src, const char *dst) {
 	if (jack_disconnect(client, src, dst)) {
-		if (verbose == TRUE) {
-			fprintf(stderr, "Error: cannot disconnect %s from %s\n", src, dst);
-		}
+		fprintf(stderr, "Error: cannot disconnect %s from %s\n", src, dst);
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;
@@ -128,3 +123,4 @@ int disconnect_all(void) {
 		rc = EXIT_FAILURE;
 	return rc;
 }
+

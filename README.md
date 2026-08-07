@@ -6,7 +6,7 @@ for scripting connections in kiosk-mode applications.
 ## Options
 
 ```sh
-Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>] [-v]
+Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>]
   -l              list peripherals
   -C              list all connections
   -D              disconnect all peripherals
@@ -14,7 +14,6 @@ Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>] [-v]
   -d <src> <dst>  disconnect src to dst
   -f <file>       connect all peripherals from <file>
   -h              print this message
-  -v              verbose mode
 ```
 
 # Examples

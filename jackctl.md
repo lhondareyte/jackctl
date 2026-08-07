@@ -28,9 +28,6 @@
 `-D`
   disconnect all ports
 
-`-v`
-  verbose mode
-
 ## CONFIGURATION FILE
 
 The configuration file use `ini` style file format. Each section corresponds to a connection between two ports. Each section must include a source and a destination.

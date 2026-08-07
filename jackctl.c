@@ -17,7 +17,7 @@ jack_client_t *client;
 
 int usage(void){
 	fprintf(stderr,
-		"Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>] [-v]\n"
+		"Usage: jackctl [-l] [-C] [-D] [-c <src> <dst>] [-d <src> <dst>] [-f <file>]\n"
 		"  -l              list peripherals\n"
 		"  -C              list all connections\n"
 		"  -D              disconnect all peripherals\n"
@@ -25,7 +25,6 @@ int usage(void){
 		"  -d <src> <dst>  disconnect src to dst\n"
 		"  -f <file>       connect all peripherals from <file>\n"
 		"  -h              print this message\n"
-		"  -v              verbose mode\n"
 		);
 	exit(EXIT_FAILURE);
 }
@@ -38,7 +37,7 @@ int main(int argc, char *argv[]) {
 
 	/* Checking command line options */
 	if (argc > 1) {
-		while ((opt = getopt (argc, argv, "c:d:f:lhCDv")) != -1 ) {
+		while ((opt = getopt (argc, argv, "c:d:f:lhCD")) != -1 ) {
 			switch (opt) {
 			case 'l': 
 				action = LIST_PORTS;
@@ -57,9 +56,6 @@ int main(int argc, char *argv[]) {
 				break;
 			case 'd':
 				action = DISCONNECT;
-				break;
-			case 'v':
-				verbose = TRUE;
 				break;
 			default:
 				usage();
@@ -109,3 +105,4 @@ int main(int argc, char *argv[]) {
 	jack_client_close(client);
 	return rc;
 }
+

@@ -21,7 +21,6 @@
 #endif
 
 extern jack_client_t *client;
-extern bool verbose;
 
 extern int connect_ports(const char *, const char *);
 typedef struct {
@@ -142,11 +141,11 @@ int run_config(void) {
 		if (config.section[i] && config.source[i] && config.destination[i]) {
 					rc += connect_ports(config.source[i], config.destination[i]);
 		}
-		else if( ! config.source[i]  && verbose == TRUE ) {
+		else if(! config.source[i]) {
 			fprintf(stderr, "Error: Missing source in \"%s\" section\n", config.section[i]);
 			rc = EXIT_FAILURE;
 		}
-		else if( ! config.destination[i] && verbose == TRUE ) {
+		else if(! config.destination[i]) {
 			fprintf(stderr, "Error: Missing destination in \"%s\" section\n", config.section[i]);
 			rc = EXIT_FAILURE;
 		}
