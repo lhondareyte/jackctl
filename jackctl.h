@@ -18,21 +18,16 @@ int run_config(void);
 
 void list_connections(void);
 void list_ports(void);
-
-#define	UNKNOWN          0
-#define	LIST_PORTS       1
-#define	LIST_CONNECTIONS 2
-#define	RUN_CONFIG       3
-#define	CONNECT          4
-#define	DISCONNECT       5
-#define	DISCONNECT_ALL   6
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-#ifndef FALSE
-#define FALSE 0
-#endif
+ 
+#define	UNKNOWN           0x00
+#define	LIST_PORTS        0x01 
+#define	LIST_CONNECTIONS  0x02
+#define	RUN_CONFIG        0x03
+#define	CONNECT           0x04
+#define	DISCONNECT        0x05
+#define	DISCONNECT_ALL    0x06
+#define	CONNECT_ALL       0x07
+#define	CONNECT_ALL_MIDI  0x08
+#define	CONNECT_ALL_AUDIO 0x09
 
 #endif /* __JACKCTL_H__ */
-
