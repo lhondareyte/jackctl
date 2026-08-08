@@ -13,10 +13,6 @@
 #include <unistd.h>
 #include <jack/jack.h>
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
 extern jack_client_t *client;
 
 void list_ports(void) {
@@ -61,8 +57,8 @@ void list_ports(void) {
 }
 
 void list_connections(void) {
-	const char **ports, **connections;
-	int i, j;
+	const char **ports; 
+	const char **connections;
 
 	ports = jack_get_ports(client, NULL, NULL, JackPortIsOutput);
 	if (ports == NULL) {
@@ -70,10 +66,10 @@ void list_connections(void) {
 	}
 
 	/* Get connexions for each port */
-	for (i = 0; ports[i] != NULL; i++) {
+	for (int i = 0; ports[i] != NULL; i++) {
 		connections = jack_port_get_all_connections(client, jack_port_by_name(client, ports[i]));
 		if (connections != NULL) {
-			for (j = 0; connections[j] != NULL; j++) {
+			for (int j = 0; connections[j] != NULL; j++) {
 				fprintf(stdout, "%s -> %s\n", ports[i], connections[j]);
 			}
 			jack_free(connections);
@@ -99,8 +95,8 @@ int disconnect_ports(const char *src, const char *dst) {
 }
 
 int disconnect_all(void) {
-	const char **ports, **connections;
-	int i, j;
+	const char **ports; 
+	const char **connections;
 	int rc = EXIT_SUCCESS;
 
 	ports = jack_get_ports(client, NULL, NULL, 0);
@@ -109,10 +105,10 @@ int disconnect_all(void) {
 	}
 
 	/* Get connexions for each port */
-	for (i = 0; ports[i] != NULL; i++) {
+	for (int i = 0; ports[i] != NULL; i++) {
 		connections = jack_port_get_all_connections(client, jack_port_by_name(client, ports[i]));
 		if (connections != NULL) {
-			for (j = 0; connections[j] != NULL; j++) {
+			for (int j = 0; connections[j] != NULL; j++) {
 				rc += disconnect_ports(ports[i], connections[j]);
 			}
 			jack_free(connections);
@@ -123,4 +119,3 @@ int disconnect_all(void) {
 		rc = EXIT_FAILURE;
 	return rc;
 }
-

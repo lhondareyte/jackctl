@@ -16,10 +16,6 @@
 #define LINE_LENGTH 256
 #define MAX_LINES   128
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
 extern jack_client_t *client;
 
 extern int connect_ports(const char *, const char *);
@@ -51,14 +47,11 @@ void trim(char *str) {
 int parse_config (char * filename) {
 
 	char line[LINE_LENGTH];
-
+	char *section = NULL;
 	FILE *fp;
 
 	int len = 0; /* line length */
 	int rc = EXIT_SUCCESS;
-	int i = 0;
-
-	char *section = NULL;
 
 	fp = fopen(filename, "r");
 	if (!fp) {
@@ -154,4 +147,3 @@ int run_config(void) {
 		rc = EXIT_FAILURE;
 	return rc;
 }
-
