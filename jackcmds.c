@@ -25,7 +25,7 @@ void list_ports(void) {
 		for (port = ports; *port; port++) {
 			printf("playback: %s\n", *port);
 		}
-		free(ports); 
+		jack_free(ports); 
 	}
 
 	/* Get AUDIO output ports */
@@ -34,7 +34,7 @@ void list_ports(void) {
 		for (port = ports; *port; port++) {
 			printf("capture: %s\n", *port);
 		}
-		free(ports); 
+		jack_free(ports); 
 	}
 
 	/* Get MIDI input ports */
@@ -43,7 +43,7 @@ void list_ports(void) {
 		for (port = ports; *port; port++) {
 			printf("midi_in: %s\n", *port);
 		}
-		free(ports); 
+		jack_free(ports); 
 	}
 
 	/* Get MIDI output ports  */
@@ -52,7 +52,7 @@ void list_ports(void) {
 		for (port = ports; *port; port++) {
 			printf("midi_out: %s\n", *port);
 		}
-		free(ports); 
+		jack_free(ports); 
 	}
 }
 
