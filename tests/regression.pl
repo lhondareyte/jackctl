@@ -24,7 +24,10 @@ foreach my $file (glob("*.ini")) {
 	my $msg = `../jackctl -f $file 2>&1`;
 	chomp $msg;
 	if ( $msg ne $messages{$file} ) {
-		die "Regression with $file configuration file\n";
+		print STDERR "Regression with $file configuration file";
+		print STDERR "\n*** Expected result ***:\n$messages{$file}";
+		print STDERR "\n\n***Result ***:\n$msg\n";
+		exit 1;
 	}
 }
 print STDOUT "All tests passed.\n"
